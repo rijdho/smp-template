@@ -1,0 +1,92 @@
+{
+  "$schema": "https://rijdho.github.io/smp-template/schema/smp.schema.json",
+  "smp": {
+    "schema_version": "0.1.0",
+    "title": "Software Management Plan for Actionable SMP",
+    "created": "2026-09-29T12:00:00Z",
+    "modified": "2026-10-30T12:00:00Z",
+    "language": "eng",
+    "level": "medium",
+    "contact": {
+      "name": "Ricardo Hartley Belmar",
+      "contact_id": {
+        "identifier": "https://orcid.org/0000-0001-5058-9309",
+        "type": "orcid"
+      }
+    },
+    "software": {
+      "title": "Actionable SMP",
+      "repository_url": "https://github.com/rijdho/smp-template"
+    },
+    "guide": {
+      "title": "Practical guide to Software Management Plans",
+      "version": "1.1",
+      "doi": "10.5281/zenodo.7038280"
+    },
+    "requirements": {
+      "purpose": {
+        "status": "in_place",
+        "answer": "A web page and a command-line checker for writing a Software Management Plan as a machine-readable smp.json and checking its commitments against the repository it describes. For research software engineers, data stewards and funders.",
+        "audience": "Research software engineers, data stewards, funders"
+      },
+      "version_control": {
+        "status": "in_place",
+        "answer": "Git, with the repository on GitHub. Releases will be tagged vX.Y.Z following Semantic Versioning, and every change is recorded in the git history.",
+        "system": "git",
+        "url": "https://github.com/rijdho/smp-template"
+      },
+      "repository": {
+        "status": "planned",
+        "answer": "Public on GitHub once the first version is ready. Each GitHub release will be archived on Zenodo, which gives every version a DOI and the software a concept DOI that resolves to the latest.",
+        "archive": "zenodo"
+      },
+      "user_documentation": {
+        "status": "in_place",
+        "answer": "The README explains what the tool does, its method and its limits; the page itself carries How it works, Caveats and About views in English and Spanish.",
+        "path": "README.md"
+      },
+      "licensing": {
+        "status": "in_place",
+        "answer": "Code under MIT; schema and texts under CC BY 4.0. The guide's questions are used under CC BY 4.0 and credited in NOTICE and on the page. There are no runtime or development dependencies, so there are no dependency licences to reconcile; the self-hosted Inter font is under the SIL Open Font License.",
+        "spdx": "MIT",
+        "dependency_check": "No dependencies; NOTICE lists the third-party material that is included."
+      },
+      "deployment_documentation": {
+        "status": "in_place",
+        "answer": "The README's Run locally section: any static file server, and Node 20 or later for the tests and the checker. Nothing is installed.",
+        "path": "README.md"
+      },
+      "citation": {
+        "status": "in_place",
+        "answer": "CITATION.cff at the root, read by GitHub's Cite this repository button and by Zenodo. The concept DOI will be added to it and to the README when the first release is archived.",
+        "cff": "CITATION.cff"
+      },
+      "developer_documentation": {
+        "status": "in_place",
+        "answer": "CONTRIBUTING.md says how to test, regenerate the schema and version the served files; the source files explain the reasons for their design in their header comments.",
+        "contributing": "CONTRIBUTING.md"
+      },
+      "testing": {
+        "status": "in_place",
+        "answer": "Node's built-in test runner, with no dependencies, covering the method with exact expected outcomes, the checker on temporary git checkouts, and the page's guards. The suite runs on every push to main and on every pull request, and the deploy waits for it.",
+        "path": "tests",
+        "automated": true
+      },
+      "engineering_quality": {
+        "status": "in_place",
+        "answer": "No external checklist. The quality rules that matter here are enforced by tests: a strict Content-Security-Policy, one version on every served file, parity of the two languages, and a schema generated from the same catalogue as the code.",
+        "checklist": "none"
+      },
+      "packaging": {
+        "status": "not_applicable",
+        "answer": "The page is served as it is, and the checker runs from a checkout or as a GitHub Action, which references the repository directly. There is nothing to package for a registry."
+      },
+      "maintenance": {
+        "status": "in_place",
+        "answer": "Maintained by Ricardo Hartley Belmar at least until the end of 2027, including updates when the guide or the RDA DMP Common Standard changes. If maintenance ends, the README will say so and the repository will be archived read-only, with the last release kept on Zenodo.",
+        "until": "2027-12-31",
+        "retirement": "Archive the repository read-only and state it in the README; the Zenodo record remains."
+      }
+    }
+  }
+}

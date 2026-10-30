@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Writing a plan touches no network at all; checking one talks to exactly two GitHub hosts.
+       Saying so in a policy the browser enforces turns that promise into a guarantee: a font
+       CDN slipped in by accident, or an escape missed in a future edit, is blocked rather than
+       silently working. `frame-ancestors` is ignored in a meta tag and GitHub Pages cannot set
+       headers, so clickjacking is not covered here. -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'none';
+    script-src 'self';
+    style-src 'self';
+    font-src 'self';
+    img-src 'self' data:;
+    connect-src https://api.github.com https://raw.githubusercontent.com;
+    form-action 'none';
+    base-uri 'none';
+    object-src 'none'" />
+  <title>Actionable SMP: a Software Management Plan a machine can check</title>
+  <meta name="description" data-i18n-attr="content:meta.description"
+        content="Write a Software Management Plan as a machine-readable smp.json, following the Practical guide to Software Management Plans, and check what the plan promises against what the repository actually shows." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%236d4aff'/%3E%3Ctext x='16' y='21' font-size='11' text-anchor='middle' fill='%23ffffff' font-family='monospace' font-weight='bold'%3ESMP%3C/text%3E%3C/svg%3E" />
+  <!-- The shared look (a synced copy of the house style), then this tool's own styles. -->
+  <link rel="stylesheet" href="./house/house.css?v=18" />
+  <link rel="stylesheet" href="./style.css?v=18" />
+  <script src="./src/theme-boot.js?v=18"></script>
+</head>
+<body>
+  <div class="app" id="app">
+    <aside class="rail" id="rail">
+      <div class="brand-mark">
+        <a class="brand-glyph" href="./" tabindex="-1" aria-hidden="true"></a>
+        <div>
+          <p class="brand-name"><a href="./">Actionable SMP</a></p>
+          <a class="brand-sub" href="https://rijdho.github.io">rijdho.github.io</a>
+        </div>
+      </div>
+      <p class="nav-label" data-i18n="nav.label">View</p>
+      <nav aria-label="View" data-i18n-attr="aria-label:nav.label">
+        <button class="nav-item active" data-view="plan" type="button">
+          <span class="nav-step">01</span><span data-i18n="nav.plan">Write the plan</span></button>
+        <button class="nav-item" data-view="check" type="button">
+          <span class="nav-step">02</span><span data-i18n="nav.check">Check a repository</span></button>
+        <button class="nav-item" data-view="how" type="button">
+          <span class="nav-step">03</span><span data-i18n="how.title">How it works</span></button>
+        <button class="nav-item" data-view="caveats" type="button">
+          <span class="nav-step">04</span><span data-i18n="caveats.title">Caveats</span></button>
+        <button class="nav-item" data-view="about" type="button">
+          <span class="nav-step">05</span><span data-i18n="about.title">About</span></button>
+      </nav>
+      <div class="rail-foot">
+        <span data-i18n-html="rail.by">By <a href="https://rijdho.github.io" target="_blank" rel="noreferrer">Ricardo Hartley Belmar</a></span><br />
+        <span data-i18n="rail.license.code">Code under MIT</span><br />
+        <span data-i18n="rail.license.data">schema and texts under CC BY 4.0</span><br />
+        <a href="https://github.com/rijdho/smp-template" target="_blank" rel="noreferrer" data-i18n="rail.source">Source on GitHub</a>
+      </div>
+    </aside>
+    <button class="rail-backdrop" id="rail-backdrop" type="button" tabindex="-1" aria-hidden="true"></button>
+    <div class="main-col">
+      <div class="cmdbar">
+        <button class="menu-btn" id="menu" type="button" aria-controls="rail" aria-expanded="false"
+                aria-label="Open the menu" data-i18n-attr="aria-label:ui.menu.aria">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+        </button>
+        <h1 class="cmd-title" id="cmd-title" data-i18n="nav.plan">Write the plan</h1>
+        <div class="cmd-spacer"></div>
+        <nav class="langs" id="lang" aria-label="Language" data-i18n-attr="aria-label:ui.lang.aria"></nav>
+        <a class="ghost-btn" href="https://github.com/rijdho/smp-template" target="_blank" rel="noreferrer"
+           data-i18n="ui.brand.source">source ↗</a>
+        <button class="icon-btn" id="theme" type="button" aria-label="Toggle light/dark theme"
+                data-i18n-attr="title:ui.theme.title;aria-label:ui.theme.aria">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8Z" /></svg>
+        </button>
+      </div>
+      <main class="content">
+        <div class="content-inner">
+
+          <!-- ── 01 Write the plan ─────────────────────────────────────────── -->
+          <section class="view" data-view="plan">
+            <p class="eyebrow" data-i18n="ui.brand.tagline">A Software Management Plan a machine can check</p>
+            <p class="lede" data-i18n-html="ui.lede"></p>
+
+            <!-- Starting a plan: open an existing one, or clear this one. Finishing it is at the bottom. -->
+            <div class="toolbar" id="toolbar">
+              <label class="btn ghost file-btn"><span data-i18n="plan.import">Open smp.json</span>
+                <input type="file" id="import-file" accept=".json,application/json" /></label>
+              <span class="validity" id="import-status" aria-live="polite"></span>
+              <div class="cmd-spacer"></div>
+              <button class="btn ghost danger-quiet" id="new-plan" type="button" data-i18n="plan.new">Start over</button>
+            </div>
+
+            <section class="panel">
+              <h2 class="panel-title" data-i18n="plan.meta.title">About the plan</h2>
+              <div class="grid2">
+                <label class="field"><span data-i18n="plan.title.label">Title of the plan</span>
+                  <input class="input" data-bind="title" autocomplete="off"
+                         data-i18n-attr="placeholder:plan.title.ph" placeholder="Software Management Plan for …" /></label>
+                <label class="field"><span data-i18n="plan.software.label">Name of the software</span>
+                  <input class="input" data-bind="software.title" autocomplete="off" /></label>
+                <label class="field"><span data-i18n="plan.repo.label">Repository URL</span>
+                  <input class="input" data-bind="software.repository_url" autocomplete="off" spellcheck="false"
+                         data-i18n-attr="placeholder:plan.repo.ph" placeholder="https://github.com/owner/repo" /></label>
+                <label class="field"><span data-i18n="plan.lang.label">Language of the answers (ISO 639-3)</span>
+                  <input class="input" data-bind="language" autocomplete="off" spellcheck="false" maxlength="3" /></label>
+                <label class="field"><span data-i18n="plan.contact.label">Contact person</span>
+                  <input class="input" data-bind="contact.name" autocomplete="off" /></label>
+                <label class="field"><span data-i18n="plan.orcid.label">Contact ORCID iD</span>
+                  <input class="input" data-bind="contact.contact_id.identifier" autocomplete="off" spellcheck="false"
+                         data-i18n-attr="placeholder:plan.orcid.ph" placeholder="0000-0000-0000-0000" /></label>
+                <label class="field span2"><span data-i18n="plan.mbox.label">Contact e-mail (optional)</span>
+                  <input class="input" data-bind="contact.mbox" type="email" autocomplete="off" />
+                  <span class="hint" data-i18n="plan.mbox.hint"></span></label>
+              </div>
+            </section>
+
+            <section class="panel">
+              <h2 class="panel-title" data-i18n="plan.level.title">Management level</h2>
+              <p class="hint" data-i18n="plan.level.hint"></p>
+              <div class="levels" id="levels" role="radiogroup" data-i18n-attr="aria-label:plan.level.title"></div>
+            </section>
+
+            <div class="reqs-head">
+              <h2 class="panel-title" data-i18n="plan.reqs.title">Requirements</h2>
+              <span class="muted" id="reqs-count"></span>
+            </div>
+            <div id="reqs"></div>
+
+            <!-- Finishing a plan: what is still wrong with it, then what to do with it. -->
+            <section class="panel finish">
+              <div class="validity" id="validity" aria-live="polite"></div>
+              <ul class="problems" id="problems" hidden></ul>
+              <div class="toolbar">
+                <button class="btn" id="dl-json" type="button" data-i18n="plan.dl.json">Download smp.json</button>
+                <button class="btn ghost" id="dl-md" type="button" data-i18n="plan.dl.md">Download SMP.md</button>
+                <button class="btn ghost" id="to-check" type="button" data-i18n="plan.toCheck">Check this plan against a repository</button>
+              </div>
+            </section>
+          </section>
+
+          <!-- ── 02 Check a repository ─────────────────────────────────────── -->
+          <section class="view" data-view="check" hidden>
+            <p class="eyebrow" data-i18n="check.eyebrow">The check</p>
+            <p class="lede" data-i18n-html="check.lede"></p>
+            <form class="panel" id="check-form" novalidate>
+              <label class="field"><span data-i18n="check.repo.label">GitHub repository</span>
+                <input class="input" id="repo" autocomplete="off" spellcheck="false"
+                       data-i18n-attr="placeholder:check.repo.ph" placeholder="owner/repo or https://github.com/owner/repo" /></label>
+              <div class="field">
+                <span data-i18n="check.source.label">Plan to check</span>
+                <div class="radios" role="radiogroup" data-i18n-attr="aria-label:check.source.label">
+                  <label class="chk"><input type="radio" name="source" value="repo" checked />
+                    <span data-i18n="check.source.repo">smp.json from the repository</span></label>
+                  <label class="chk"><input type="radio" name="source" value="editor" />
+                    <span data-i18n="check.source.editor">The plan in the editor</span></label>
+                </div>
+              </div>
+              <div class="actions">
+                <button class="btn" id="check-go" type="submit" data-i18n="check.go">Check</button>
+                <span class="muted" id="check-status" aria-live="polite"></span>
+              </div>
+              <div class="msg" id="check-error" hidden></div>
+            </form>
+
+            <section class="panel" id="check-results" hidden aria-live="polite">
+              <div class="panel-h">
+                <h2 class="panel-title" data-i18n="check.results">Result</h2>
+                <span class="muted mono" id="check-of"></span>
+              </div>
+              <div class="result-actions">
+                <button class="btn ghost small" id="dl-report" type="button" data-i18n="check.dlReport">Download report (.md)</button>
+                <button class="btn ghost small" id="to-editor" type="button" hidden data-i18n="check.toEditor">Open this plan in the editor</button>
+              </div>
+              <div class="stats" id="check-stats"></div>
+              <div class="notes" id="check-notes"></div>
+              <ul class="problems" id="check-problems" hidden></ul>
+              <div id="check-list"></div>
+            </section>
+
+            <section class="panel">
+              <h2 class="panel-title" data-i18n="check.action.title">Run the same check in CI</h2>
+              <p class="hint" data-i18n="check.action.lede"></p>
+              <pre class="code"><code>- uses: actions/checkout@v4
+- uses: rijdho/smp-template@main
+  with:
+    plan: smp.json</code></pre>
+            </section>
+          </section>
+
+          <!-- ── 03 How it works ───────────────────────────────────────────── -->
+          <section class="view prose" data-view="how" hidden>
+            <p class="eyebrow" data-i18n="how.eyebrow">Method</p>
+            <p class="lede" data-i18n="how.lede"></p>
+            <h2 data-i18n="how.req.title">The fourteen requirements and the three levels</h2>
+            <p data-i18n-html="how.req.body"></p>
+            <div class="tablewrap"><table class="req-table" id="req-table"></table></div>
+            <p class="hint xwalk-note" data-i18n-html="how.xwalk.note"></p>
+            <h2 data-i18n="how.status.title">Planned, in place, not applicable</h2>
+            <p data-i18n-html="how.status.body"></p>
+            <h2 data-i18n="how.file.title">The file</h2>
+            <p data-i18n-html="how.file.body"></p>
+            <p><a href="./schema/smp.schema.json" target="_blank" rel="noreferrer">schema/smp.schema.json</a></p>
+            <h2 data-i18n="how.guide.title">Two places where the guide contradicts itself</h2>
+            <p data-i18n-html="how.guide.body"></p>
+            <h2 data-i18n="how.cli.title">The same check on the command line and in CI</h2>
+            <pre class="code"><code>node bin/smp-check.mjs [dir] [--plan smp.json] [--strict] [--format text|md|json] [--lang en|es]</code></pre>
+            <h2 data-i18n="how.related.title">Related work</h2>
+            <p data-i18n-html="how.related.body"></p>
+          </section>
+
+          <!-- ── 04 Caveats ────────────────────────────────────────────────── -->
+          <section class="view prose" data-view="caveats" hidden>
+            <p class="eyebrow" data-i18n="caveats.eyebrow">Limits</p>
+            <p class="lede" data-i18n="caveats.lede"></p>
+            <ul class="caveats">
+              <li data-i18n-html="caveats.1"></li>
+              <li data-i18n-html="caveats.2"></li>
+              <li data-i18n-html="caveats.3"></li>
+              <li data-i18n-html="caveats.4"></li>
+              <li data-i18n-html="caveats.5"></li>
+              <li data-i18n-html="caveats.6"></li>
+            </ul>
+          </section>
+
+          <!-- ── 05 About ──────────────────────────────────────────────────── -->
+          <section class="view prose" data-view="about" hidden>
+            <p class="eyebrow" data-i18n="about.eyebrow">About</p>
+            <p data-i18n-html="about.p1"></p>
+            <p data-i18n-html="about.p2"></p>
+            <p data-i18n-html="about.p3"></p>
+          </section>
+
+        </div>
+      </main>
+    </div>
+  </div>
+  <script type="module" src="./src/app.js?v=18"></script>
+</body>
+</html>

@@ -1,0 +1,686 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rijdho.github.io/smp-template/schema/smp.schema.json",
+  "title": "Actionable Software Management Plan",
+  "description": "smp.json, schema version 0.1.0. Requirements and levels from the Practical guide to Software Management Plans (https://doi.org/10.5281/zenodo.7038280); envelope after the RDA DMP Common Standard. Generated from src/requirements.js; do not edit by hand. CC BY 4.0.",
+  "type": "object",
+  "required": [
+    "smp"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "smp": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "title",
+        "created",
+        "modified",
+        "language",
+        "level",
+        "contact",
+        "software",
+        "requirements"
+      ],
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "const": "0.1.0"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string"
+        },
+        "smp_id": {
+          "type": "object",
+          "required": [
+            "identifier",
+            "type"
+          ],
+          "properties": {
+            "identifier": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string",
+              "examples": [
+                "doi",
+                "handle",
+                "ark",
+                "url"
+              ]
+            }
+          }
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "modified": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "language": {
+          "type": "string",
+          "pattern": "^[a-z]{3}$",
+          "description": "ISO 639-3 code of the answers."
+        },
+        "level": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "contact": {
+          "type": "object",
+          "required": [
+            "name"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "mbox": {
+              "type": "string",
+              "format": "email"
+            },
+            "contact_id": {
+              "type": "object",
+              "required": [
+                "identifier",
+                "type"
+              ],
+              "properties": {
+                "identifier": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string",
+                  "examples": [
+                    "orcid",
+                    "isni",
+                    "openid"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "software": {
+          "type": "object",
+          "required": [
+            "title"
+          ],
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "repository_url": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^https?://"
+            }
+          }
+        },
+        "guide": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "doi": {
+              "type": "string"
+            }
+          }
+        },
+        "requirements": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "purpose": {
+              "$ref": "#/$defs/requirements/purpose"
+            },
+            "version_control": {
+              "$ref": "#/$defs/requirements/version_control"
+            },
+            "repository": {
+              "$ref": "#/$defs/requirements/repository"
+            },
+            "user_documentation": {
+              "$ref": "#/$defs/requirements/user_documentation"
+            },
+            "licensing": {
+              "$ref": "#/$defs/requirements/licensing"
+            },
+            "deployment_documentation": {
+              "$ref": "#/$defs/requirements/deployment_documentation"
+            },
+            "citation": {
+              "$ref": "#/$defs/requirements/citation"
+            },
+            "developer_documentation": {
+              "$ref": "#/$defs/requirements/developer_documentation"
+            },
+            "testing": {
+              "$ref": "#/$defs/requirements/testing"
+            },
+            "engineering_quality": {
+              "$ref": "#/$defs/requirements/engineering_quality"
+            },
+            "packaging": {
+              "$ref": "#/$defs/requirements/packaging"
+            },
+            "maintenance": {
+              "$ref": "#/$defs/requirements/maintenance"
+            },
+            "support": {
+              "$ref": "#/$defs/requirements/support"
+            },
+            "risk_analysis": {
+              "$ref": "#/$defs/requirements/risk_analysis"
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "level": {
+                "const": "low"
+              }
+            },
+            "required": [
+              "level"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "requirements": {
+                "type": "object",
+                "required": [
+                  "purpose",
+                  "version_control",
+                  "user_documentation",
+                  "licensing",
+                  "deployment_documentation"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "level": {
+                "const": "medium"
+              }
+            },
+            "required": [
+              "level"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "requirements": {
+                "type": "object",
+                "required": [
+                  "purpose",
+                  "version_control",
+                  "repository",
+                  "user_documentation",
+                  "licensing",
+                  "deployment_documentation",
+                  "citation",
+                  "developer_documentation",
+                  "testing",
+                  "engineering_quality",
+                  "packaging",
+                  "maintenance"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "level": {
+                "const": "high"
+              }
+            },
+            "required": [
+              "level"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "requirements": {
+                "type": "object",
+                "required": [
+                  "purpose",
+                  "version_control",
+                  "repository",
+                  "user_documentation",
+                  "licensing",
+                  "deployment_documentation",
+                  "citation",
+                  "developer_documentation",
+                  "testing",
+                  "engineering_quality",
+                  "packaging",
+                  "maintenance",
+                  "support",
+                  "risk_analysis"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "$defs": {
+    "Status": {
+      "type": "string",
+      "enum": [
+        "planned",
+        "in_place",
+        "not_applicable"
+      ],
+      "description": "in_place: a claim the checker holds the repository to. planned: reported, never failed. not_applicable: say why in answer."
+    },
+    "requirements": {
+      "purpose": {
+        "type": "object",
+        "description": "Guide requirement \"purpose\" (§5.1); in the low, medium, high template(s).",
+        "required": [
+          "status"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "$ref": "#/$defs/Status"
+          },
+          "answer": {
+            "type": "string",
+            "description": "The answer to the guide’s question for this requirement."
+          },
+          "audience": {
+            "type": "string"
+          }
+        }
+      },
+      "version_control": {
+        "type": "object",
+        "description": "Guide requirement \"version_control\" (§5.1); in the low, medium, high template(s).",
+        "required": [
+          "status"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "$ref": "#/$defs/Status"
+          },
+          "answer": {
+            "type": "string",
+            "description": "The answer to the guide’s question for this requirement."
+          },
+          "system": {
+            "type": "string",
+            "enum": [
+              "git",
+              "mercurial",
+              "subversion",
+              "other"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https?://"
+          }
+        }
+      },
+      "repository": {
+        "type": "object",
+        "description": "Guide requirement \"repository\" (§5.1); in the medium, high template(s).",
+        "required": [
+          "status"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "$ref": "#/$defs/Status"
+          },
+          "answer": {
+            "type": "string",
+            "description": "The answer to the guide’s question for this requirement."
+          },
+          "archive": {
+            "type": "string",
+            "enum": [
+              "zenodo",
+              "software_heritage",
+              "figshare",
+              "institutional",
+              "other",
+              "none"
+            ]
+          },
+          "doi": {
+            "type": "string",
+            "pattern": "^(https?://(dx\\.)?doi\\.org/|doi:\\s*)?10\\.\\d{4,9}/\\S+$"
+          }
+        }
+      },
+      "user_documentation": {
+        "type": "object",
+        "description": "Guide requirement \"user_documentation\" (§5.1); in the low, medium, high template(s).",
+        "required": [
+          "status"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "$ref": "#/$defs/Status"
+          },
+          "answer": {
+            "type": "string",
+            "description": "The answer to the guide’s question for this requirement."
+          },
+          "path": {
+            "type": "string",
+            "pattern": "^(?!/)(?!.*(^|/)\\.\\.(/|$))(?!.*//)[^\\\\]+$",
+            "default": "README.md"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https?://"
+          }
+        }
+      },
+      "licensing": {
+        "type": "object",
+        "description": "Guide requirement \"licensing\" (§5.1); in the low, medium, high template(s).",
+        "required": [
+          "status"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "$ref": "#/$defs/Status"
+          },
+          "answer": {
+            "type": "string",
+            "description": "The answer to the guide’s question for this requirement."
+          },
+          "spdx": {
+            "type": "string",
+            "description": "SPDX licence identifier or expression, e.g. Apache-2.0"
+          },
+          "dependency_check": {
+            "type": "string"
+          }
+        }
+      },
+      "deployment_documentation": {
+        "type": "object",
+        "description": "Guide requirement \"deployment_documentation\" (§5.1); in the low, medium, high template(s).",
+        "required": [
+          "status"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "$ref": "#/$defs/Status"
+          },
+          "answer": {
+            "type": "string",
+            "description": "The answer to the guide’s question for this requirement."
+          },
+          "path": {
+            "type": "string",
+            "pattern": "^(?!/)(?!.*(^|/)\\.\\.(/|$))(?!.*//)[^\\\\]+$",
+            "default": "README.md"
+          }
+        }
+      },
+      "citation": {
+        "type": "object",
+        "description": "Guide requirement \"citation\" (§5.1); in the medium, high template(s).",
+        "required": [
+          "status"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "$ref": "#/$defs/Status"
+          },
+          "answer": {
+            "type": "string",
+            "description": "The answer to the guide’s question for this requirement."
+          },
+          "cff": {
+            "type": "string",
+            "pattern": "^(?!/)(?!.*(^|/)\\.\\.(/|$))(?!.*//)[^\\\\]+$",
+            "default": "CITATION.cff"
+          },
+          "doi": {
+            "type": "string",
+            "pattern": "^(https?://(dx\\.)?doi\\.org/|doi:\\s*)?10\\.\\d{4,9}/\\S+$"
+          }
+        }
+      },
+      "developer_documentation": {
+        "type": "object",
+        "description": "Guide requirement \"developer_documentation\" (§5.1); in the medium, high template(s).",
+        "required": [
+          "status"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "$ref": "#/$defs/Status"
+          },
+          "answer": {
+            "type": "string",
+            "description": "The answer to the guide’s question for this requirement."
+          },
+          "contributing": {
+            "type": "string",
+            "pattern": "^(?!/)(?!.*(^|/)\\.\\.(/|$))(?!.*//)[^\\\\]+$",
+            "default": "CONTRIBUTING.md"
+          },
+          "code_of_conduct": {
+            "type": "string",
+            "pattern": "^(?!/)(?!.*(^|/)\\.\\.(/|$))(?!.*//)[^\\\\]+$"
+          }
+        }
+      },
+      "testing": {
+        "type": "object",
+        "description": "Guide requirement \"testing\" (§5.1); in the medium, high template(s).",
+        "required": [
+          "status"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "$ref": "#/$defs/Status"
+          },
+          "answer": {
+            "type": "string",
+            "description": "The answer to the guide’s question for this requirement."
+          },
+          "path": {
+            "type": "string",
+            "pattern": "^(?!/)(?!.*(^|/)\\.\\.(/|$))(?!.*//)[^\\\\]+$"
+          },
+          "automated": {
+            "type": "boolean"
+          },
+          "results_url": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https?://"
+          }
+        }
+      },
+      "engineering_quality": {
+        "type": "object",
+        "description": "Guide requirement \"engineering_quality\" (§5.1); in the medium, high template(s).",
+        "required": [
+          "status"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "$ref": "#/$defs/Status"
+          },
+          "answer": {
+            "type": "string",
+            "description": "The answer to the guide’s question for this requirement."
+          },
+          "checklist": {
+            "type": "string",
+            "enum": [
+              "none",
+              "openssf_best_practices",
+              "other"
+            ]
+          },
+          "linter_config": {
+            "type": "string",
+            "pattern": "^(?!/)(?!.*(^|/)\\.\\.(/|$))(?!.*//)[^\\\\]+$"
+          }
+        }
+      },
+      "packaging": {
+        "type": "object",
+        "description": "Guide requirement \"packaging\" (§5.1); in the medium, high template(s).",
+        "required": [
+          "status"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "$ref": "#/$defs/Status"
+          },
+          "answer": {
+            "type": "string",
+            "description": "The answer to the guide’s question for this requirement."
+          },
+          "registry": {
+            "type": "string",
+            "enum": [
+              "npm",
+              "pypi",
+              "cran",
+              "conda",
+              "crates",
+              "maven",
+              "container",
+              "none",
+              "other"
+            ]
+          },
+          "package_name": {
+            "type": "string"
+          },
+          "manifest": {
+            "type": "string",
+            "pattern": "^(?!/)(?!.*(^|/)\\.\\.(/|$))(?!.*//)[^\\\\]+$"
+          }
+        }
+      },
+      "maintenance": {
+        "type": "object",
+        "description": "Guide requirement \"maintenance\" (§5.1); in the medium, high template(s).",
+        "required": [
+          "status"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "$ref": "#/$defs/Status"
+          },
+          "answer": {
+            "type": "string",
+            "description": "The answer to the guide’s question for this requirement."
+          },
+          "until": {
+            "type": "string",
+            "format": "date"
+          },
+          "retirement": {
+            "type": "string"
+          }
+        }
+      },
+      "support": {
+        "type": "object",
+        "description": "Guide requirement \"support\" (§5.1); in the high template(s).",
+        "required": [
+          "status"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "$ref": "#/$defs/Status"
+          },
+          "answer": {
+            "type": "string",
+            "description": "The answer to the guide’s question for this requirement."
+          },
+          "channel": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https?://"
+          }
+        }
+      },
+      "risk_analysis": {
+        "type": "object",
+        "description": "Guide requirement \"risk_analysis\" (§5.1); in the high template(s).",
+        "required": [
+          "status"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "$ref": "#/$defs/Status"
+          },
+          "answer": {
+            "type": "string",
+            "description": "The answer to the guide’s question for this requirement."
+          },
+          "security_policy": {
+            "type": "string",
+            "pattern": "^(?!/)(?!.*(^|/)\\.\\.(/|$))(?!.*//)[^\\\\]+$",
+            "default": "SECURITY.md"
+          }
+        }
+      }
+    }
+  }
+}

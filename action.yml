@@ -1,0 +1,33 @@
+name: Check Software Management Plan
+description: Fail the build when a commitment the smp.json marks as in place is not visible in the repository.
+author: Ricardo Hartley Belmar
+branding:
+  icon: check-square
+  color: purple
+
+inputs:
+  plan:
+    description: Path of the plan, relative to the repository root.
+    default: smp.json
+  strict:
+    description: Also fail on commitments that are only planned.
+    default: 'false'
+  lang:
+    description: Language of the report (en or es).
+    default: en
+
+runs:
+  using: composite
+  steps:
+    # Inputs travel as environment variables, never interpolated into the script, so a plan
+    # path cannot inject shell. The checkout is the caller's job (actions/checkout), and the
+    # runner's own Node runs the checker: it has no dependencies to install.
+    - shell: bash
+      env:
+        SMP_PLAN: ${{ inputs.plan }}
+        SMP_STRICT: ${{ inputs.strict }}
+        SMP_LANG: ${{ inputs.lang }}
+      run: |
+        args=(--plan "$SMP_PLAN" --lang "$SMP_LANG")
+        if [ "$SMP_STRICT" = "true" ]; then args+=(--strict); fi
+        node "$GITHUB_ACTION_PATH/bin/smp-check.mjs" "$GITHUB_WORKSPACE" "${args[@]}"

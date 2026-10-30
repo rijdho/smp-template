@@ -1,0 +1,20 @@
+smp-template (Actionable SMP)
+Copyright 2026 Ricardo Hartley Belmar
+
+The code (index.html, style.css, src/, bin/, scripts/, tests/, action.yml) is licensed under
+the MIT License (LICENSE) since 2026-10-20. Before that date, while the repository was private,
+it was under the Apache License, Version 2.0, and copies taken then remain under it.
+
+The schema (schema/smp.schema.json) and the texts (the interface strings in src/i18n/ and the
+documentation) are licensed under the Creative Commons Attribution 4.0 International License
+(CC BY 4.0): https://creativecommons.org/licenses/by/4.0/
+
+The English questions in src/i18n/en.js, and the requirements and management levels in
+src/requirements.js, are taken from:
+  Martinez-Ortiz, C., Martinez Lavanchy, P., Sesink, L., Olivier, B. G., Meakin, J.,
+  de Jong, M. and Cruz, M. (2023). Practical guide to Software Management Plans (v1.1).
+  Zenodo. https://doi.org/10.5281/zenodo.7038280
+  licensed under CC BY 4.0. The Spanish questions in src/i18n/es.js are a translation of them.
+
+house/fonts/: Inter, by Rasmus Andersson,
+under the SIL Open Font License 1.1.

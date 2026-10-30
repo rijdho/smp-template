@@ -1,0 +1,51 @@
+cff-version: 1.2.0
+message: "If you use this tool, please cite it as below."
+title: "Actionable SMP: a Software Management Plan a machine can check"
+abstract: >-
+  A static, client-side web tool and command-line checker for machine-actionable
+  Software Management Plans. It turns the questions, requirements and management
+  levels of the Practical guide to Software Management Plans (Martinez-Ortiz et al.,
+  2023) into smp.json, a plan whose envelope follows the RDA DMP Common Standard,
+  and checks every commitment the plan marks as in place against the files of the
+  repository it describes, locally, in the browser against GitHub, or as a GitHub
+  Action. Code under MIT; schema and texts under CC BY 4.0. Available in
+  English and Spanish.
+type: software
+authors:
+  - family-names: "Hartley Belmar"
+    given-names: "Ricardo"
+    alias: rijdho
+    orcid: "https://orcid.org/0000-0001-5058-9309"
+repository-code: "https://github.com/rijdho/smp-template"
+license: MIT
+version: "0.1.0"
+date-released: "2026-10-20"
+keywords:
+  - software management plan
+  - machine-actionable
+  - research software
+  - maDMP
+  - open science
+  - FAIR4RS
+references:
+  - type: report
+    title: "Practical guide to Software Management Plans"
+    authors:
+      - family-names: "Martinez-Ortiz"
+        given-names: "Carlos"
+      - family-names: "Martinez Lavanchy"
+        given-names: "Paula"
+      - family-names: "Sesink"
+        given-names: "Laurents"
+      - family-names: "Olivier"
+        given-names: "Brett G."
+      - family-names: "Meakin"
+        given-names: "James"
+      - family-names: "de Jong"
+        given-names: "Maaike"
+      - family-names: "Cruz"
+        given-names: "Maria"
+    doi: 10.5281/zenodo.7038280
+    version: "1.1"
+    year: 2023
+    license: CC-BY-4.0
