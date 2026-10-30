@@ -2,15 +2,15 @@
 // moves values between the DOM and those modules, which is what keeps the behaviour testable in
 // Node without a browser. Only github.js touches the network.
 
-import { LEVELS, REQUIREMENTS, byId, requirementsFor } from './requirements.js?v=18';
+import { LEVELS, REQUIREMENTS, byId, requirementsFor } from './requirements.js?v=20';
 import {
   changeLevel, createPlan, parsePlan, planToJson, planToMarkdown, questionKey, stamp, validatePlan,
-} from './plan.js?v=18';
-import { CHECK_IDS, checkPlan } from './evidence.js?v=18';
-import { CROSSWALK, SOURCES } from './crosswalk.js?v=18';
-import { MARK, formatReport } from './report.js?v=18';
-import { RepoError, githubView, parseRepo } from './github.js?v=18';
-import { LANGS, getLang, resolveLang, setLang, t } from './i18n/index.js?v=18';
+} from './plan.js?v=20';
+import { CHECK_IDS, checkPlan } from './evidence.js?v=20';
+import { CROSSWALK, SOURCES } from './crosswalk.js?v=20';
+import { MARK, formatReport } from './report.js?v=20';
+import { RepoError, githubView, parseRepo } from './github.js?v=20';
+import { LANGS, getLang, resolveLang, setLang, t } from './i18n/index.js?v=20';
 
 const $ = (id) => document.getElementById(id);
 const KEY = { draft: 'smp-template:draft', lang: 'smp-template:lang', theme: 'smp-template:theme' };

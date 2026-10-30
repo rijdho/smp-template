@@ -23,9 +23,9 @@
         content="Write a Software Management Plan as a machine-readable smp.json, following the Practical guide to Software Management Plans, and check what the plan promises against what the repository actually shows." />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%236d4aff'/%3E%3Ctext x='16' y='21' font-size='11' text-anchor='middle' fill='%23ffffff' font-family='monospace' font-weight='bold'%3ESMP%3C/text%3E%3C/svg%3E" />
   <!-- The shared look (a synced copy of the house style), then this tool's own styles. -->
-  <link rel="stylesheet" href="./house/house.css?v=18" />
-  <link rel="stylesheet" href="./style.css?v=18" />
-  <script src="./src/theme-boot.js?v=18"></script>
+  <link rel="stylesheet" href="./house/house.css?v=20" />
+  <link rel="stylesheet" href="./style.css?v=20" />
+  <script src="./src/theme-boot.js?v=20"></script>
 </head>
 <body>
   <div class="app" id="app">
@@ -54,7 +54,8 @@
         <span data-i18n-html="rail.by">By <a href="https://rijdho.github.io" target="_blank" rel="noreferrer">Ricardo Hartley Belmar</a></span><br />
         <span data-i18n="rail.license.code">Code under MIT</span><br />
         <span data-i18n="rail.license.data">schema and texts under CC BY 4.0</span><br />
-        <a href="https://github.com/rijdho/smp-template" target="_blank" rel="noreferrer" data-i18n="rail.source">Source on GitHub</a>
+        <a href="https://github.com/rijdho/smp-template" target="_blank" rel="noreferrer" data-i18n="rail.source">Source on GitHub</a><br />
+        <a href="https://doi.org/10.5281/zenodo.23797138" target="_blank" rel="noreferrer">DOI 10.5281/zenodo.23797138</a>
       </div>
     </aside>
     <button class="rail-backdrop" id="rail-backdrop" type="button" tabindex="-1" aria-hidden="true"></button>
@@ -182,7 +183,7 @@
               <h2 class="panel-title" data-i18n="check.action.title">Run the same check in CI</h2>
               <p class="hint" data-i18n="check.action.lede"></p>
               <pre class="code"><code>- uses: actions/checkout@v4
-- uses: rijdho/smp-template@main
+- uses: rijdho/smp-template@v0.1.0
   with:
     plan: smp.json</code></pre>
             </section>
@@ -235,6 +236,6 @@
       </main>
     </div>
   </div>
-  <script type="module" src="./src/app.js?v=18"></script>
+  <script type="module" src="./src/app.js?v=20"></script>
 </body>
 </html>

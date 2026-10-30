@@ -223,7 +223,7 @@ export const en = {
   'check.truncated': 'GitHub truncated the file list of this repository, so some files may not have been seen.',
   'check.plan.invalid': 'The plan has {n} problem(s), shown below. The check ran anyway.',
   'check.action.title': 'Run the same check in CI',
-  'check.action.lede': 'The command-line version reads the local checkout and fails the build when a commitment marked in place is missing. With the repository public, a workflow step is enough:',
+  'check.action.lede': 'The command-line version reads the local checkout and fails the build when a commitment marked in place is missing. A workflow step is enough:',
 
   'sum.answered': '<b>{a}</b> of {n} questions answered',
   'sum.evidenced': '<b>{e}</b> of {n} requirements evidenced in the repository',

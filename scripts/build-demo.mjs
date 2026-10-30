@@ -1,8 +1,8 @@
 // Build demo.html: the whole page in one file, to download and open with a double click.
 //
-// Why it exists: while the repository is private, GitHub Pages is not available, and GitHub
-// shows an HTML file in a private repository as source rather than rendering it. A single file
-// travels: the styles, the two Inter fonts (as data: URLs), the theme bootstrap and every module
+// Why it exists: it stood in for the page while the repository was private, when GitHub Pages
+// was not available; now it is the copy of the page that works without a connection. A single
+// file travels: the styles, the two Inter fonts (as data: URLs), the theme bootstrap and every module
 // are inlined, and it works from file:// with no server.
 //
 // It is GENERATED from the same sources as index.html. tests/demo.test.mjs fails when the

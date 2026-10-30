@@ -1,5 +1,7 @@
 # Actionable SMP
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23797138.svg)](https://doi.org/10.5281/zenodo.23797138)
+
 **Write a Software Management Plan as a file the software carries, and check what the plan
 promises against what the repository actually shows.**
 
@@ -13,8 +15,10 @@ not. Writing a plan touches no network at all; checking one in the browser talks
 For research software engineers, data stewards and funders who want a management plan that can
 be checked against the software it describes.
 
-🔗 **Live:** not yet published. Meanwhile, [`demo.html`](demo.html) is the whole page in one
-file: download it (**Download raw file** on GitHub) and open it in a browser. No server needed.
+🔗 **Live:** https://rijdho.github.io/smp-template/
+
+For use without a connection, [`demo.html`](demo.html) is the whole page in one file: download it
+(**Download raw file** on GitHub) and open it in a browser. No server needed.
 
 Available in **English and Spanish** (auto-detected from the browser, switchable).
 
@@ -125,11 +129,11 @@ Exit code 0 when every in-place commitment is visible and the plan is valid, 1 w
 on disk that was never committed is not evidence of anything a reader can see. A tracked file
 is read as it is in the working tree, so run the checker on a clean checkout.
 
-As a GitHub Action, once this repository is public:
+As a GitHub Action:
 
 ```yaml
 - uses: actions/checkout@v4
-- uses: rijdho/smp-template@main
+- uses: rijdho/smp-template@v0.1.0
   with:
     plan: smp.json     # default
     strict: false      # default
@@ -205,5 +209,5 @@ details.
 ## Citation
 
 If you use this tool, please cite it: see [`CITATION.cff`](CITATION.cff) or the "Cite this
-repository" button. It is not yet archived on Zenodo; the concept DOI will be added here when it
-is.
+repository" button. Archived on Zenodo: concept DOI
+<https://doi.org/10.5281/zenodo.23797138> (always resolves to the latest version).

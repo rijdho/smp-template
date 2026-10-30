@@ -31,14 +31,15 @@
       },
       "version_control": {
         "status": "in_place",
-        "answer": "Git, with the repository on GitHub. Releases will be tagged vX.Y.Z following Semantic Versioning, and every change is recorded in the git history.",
+        "answer": "Git, with the repository on GitHub. Releases are tagged vX.Y.Z following Semantic Versioning, and every change is recorded in the git history.",
         "system": "git",
         "url": "https://github.com/rijdho/smp-template"
       },
       "repository": {
-        "status": "planned",
-        "answer": "Public on GitHub once the first version is ready. Each GitHub release will be archived on Zenodo, which gives every version a DOI and the software a concept DOI that resolves to the latest.",
-        "archive": "zenodo"
+        "status": "in_place",
+        "answer": "Public on GitHub. Each GitHub release is archived on Zenodo, which gives every version a DOI; the concept DOI 10.5281/zenodo.23797138 resolves to the latest.",
+        "archive": "zenodo",
+        "doi": "10.5281/zenodo.23797138"
       },
       "user_documentation": {
         "status": "in_place",
@@ -58,7 +59,7 @@
       },
       "citation": {
         "status": "in_place",
-        "answer": "CITATION.cff at the root, read by GitHub's Cite this repository button and by Zenodo. The concept DOI will be added to it and to the README when the first release is archived.",
+        "answer": "CITATION.cff at the root, read by GitHub's Cite this repository button and by Zenodo. It carries the concept DOI, which the README also shows.",
         "cff": "CITATION.cff"
       },
       "developer_documentation": {

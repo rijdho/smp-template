@@ -18,6 +18,14 @@ authors:
     orcid: "https://orcid.org/0000-0001-5058-9309"
 repository-code: "https://github.com/rijdho/smp-template"
 url: "https://rijdho.github.io/smp-template/"
+doi: 10.5281/zenodo.23797138
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.23797138
+    description: "Concept DOI: resolves to the latest version"
+  - type: doi
+    value: 10.5281/zenodo.23797139
+    description: "Version 0.1.0"
 license: MIT
 version: "0.1.0"
 date-released: "2026-10-30"

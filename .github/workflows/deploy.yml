@@ -40,8 +40,8 @@ jobs:
 
   deploy:
     needs: test
-    # Pages cannot be enabled on a private repository; the day it goes public this job starts
-    # running on its own. The first deploy after that still needs a manual dispatch.
+    # Deploys only from a public repository: a private copy of this one has no Pages to deploy to
+    # on GitHub Free.
     if: github.event_name != 'pull_request' && github.event.repository.private == false
     runs-on: ubuntu-latest
     environment:

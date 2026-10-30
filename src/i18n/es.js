@@ -219,7 +219,7 @@ export const es = {
   'check.truncated': 'GitHub truncó la lista de archivos de este repositorio, así que algunos archivos pueden no haberse visto.',
   'check.plan.invalid': 'El plan tiene {n} problema(s), que se muestran abajo. La comprobación se hizo de todos modos.',
   'check.action.title': 'La misma comprobación en CI',
-  'check.action.lede': 'La versión de línea de comandos lee la copia local y hace fallar la compilación cuando falta un compromiso marcado en marcha. Con el repositorio público, basta un paso en un workflow:',
+  'check.action.lede': 'La versión de línea de comandos lee la copia local y hace fallar la compilación cuando falta un compromiso marcado en marcha. Basta un paso en un workflow:',
 
   'sum.answered': '<b>{a}</b> de {n} preguntas respondidas',
   'sum.evidenced': '<b>{e}</b> de {n} requisitos con evidencia en el repositorio',

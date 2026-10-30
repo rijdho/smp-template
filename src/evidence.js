@@ -21,8 +21,8 @@
 // Pure apart from `read`, which the caller supplies. `today` is passed in, never taken from
 // the clock, so a test of an expiry date means the same thing next year.
 
-import { REQUIREMENTS, byId } from './requirements.js?v=18';
-import { normaliseDoi } from './plan.js?v=18';
+import { REQUIREMENTS, byId } from './requirements.js?v=20';
+import { normaliseDoi } from './plan.js?v=20';
 
 /** What a single check found. `declared`: the plan says it, nothing in a repository could confirm it. */
 export const OUTCOMES = Object.freeze(['evidenced', 'missing', 'pending', 'declared', 'skipped']);

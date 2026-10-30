@@ -12,7 +12,7 @@
 // identifier, and an SMP committed to a public repository is exactly where a personal
 // address should be optional.
 
-import { GUIDE, LEVELS, REQUIREMENTS, STATUSES, byId, requirementsFor } from './requirements.js?v=18';
+import { GUIDE, LEVELS, REQUIREMENTS, STATUSES, byId, requirementsFor } from './requirements.js?v=20';
 
 export const SCHEMA_VERSION = '0.1.0';
 export const SCHEMA_ID = 'https://rijdho.github.io/smp-template/schema/smp.schema.json';

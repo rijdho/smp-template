@@ -8,8 +8,8 @@
 //  · File names (smp.json, CITATION.cff, SPDX ids) are never keys here: they are
 //    the vocabulary of the formats and stay as written in every locale.
 
-import { en } from './en.js?v=18';
-import { es } from './es.js?v=18';
+import { en } from './en.js?v=20';
+import { es } from './es.js?v=20';
 
 export const LOCALES = { en, es };
 

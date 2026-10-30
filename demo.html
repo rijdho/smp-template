@@ -10,7 +10,7 @@
        headers, so clickjacking is not covered here. -->
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'none';
-    script-src 'sha256-PNvRraesdLr5HqCy8jKjWrot1GeJQ0W6wCUL9QqD6Ng=' 'sha256-BXTiOeWENgMSGGcwAH5Z4D6WAL87fE0QFBljIjtEqEc=';
+    script-src 'sha256-PNvRraesdLr5HqCy8jKjWrot1GeJQ0W6wCUL9QqD6Ng=' 'sha256-0hEfGNqfWNHZ8PuQNZh8ieeSeDp/ao8dKGBF2+DsAn0=';
     style-src 'sha256-D42t1miHa44qZ+J0C4iybIL9z5Hofqs7mzUnJLIzb3U=';
     font-src data:;
     img-src 'self' data:;
@@ -472,7 +472,8 @@ textarea.input { resize: vertical; line-height: 1.5; }
         <span data-i18n-html="rail.by">By <a href="https://rijdho.github.io" target="_blank" rel="noreferrer">Ricardo Hartley Belmar</a></span><br />
         <span data-i18n="rail.license.code">Code under MIT</span><br />
         <span data-i18n="rail.license.data">schema and texts under CC BY 4.0</span><br />
-        <a href="https://github.com/rijdho/smp-template" target="_blank" rel="noreferrer" data-i18n="rail.source">Source on GitHub</a>
+        <a href="https://github.com/rijdho/smp-template" target="_blank" rel="noreferrer" data-i18n="rail.source">Source on GitHub</a><br />
+        <a href="https://doi.org/10.5281/zenodo.23797138" target="_blank" rel="noreferrer">DOI 10.5281/zenodo.23797138</a>
       </div>
     </aside>
     <button class="rail-backdrop" id="rail-backdrop" type="button" tabindex="-1" aria-hidden="true"></button>
@@ -600,7 +601,7 @@ textarea.input { resize: vertical; line-height: 1.5; }
               <h2 class="panel-title" data-i18n="check.action.title">Run the same check in CI</h2>
               <p class="hint" data-i18n="check.action.lede"></p>
               <pre class="code"><code>- uses: actions/checkout@v4
-- uses: rijdho/smp-template@main
+- uses: rijdho/smp-template@v0.1.0
   with:
     plan: smp.json</code></pre>
             </section>
@@ -2005,7 +2006,7 @@ const en = {
   'check.truncated': 'GitHub truncated the file list of this repository, so some files may not have been seen.',
   'check.plan.invalid': 'The plan has {n} problem(s), shown below. The check ran anyway.',
   'check.action.title': 'Run the same check in CI',
-  'check.action.lede': 'The command-line version reads the local checkout and fails the build when a commitment marked in place is missing. With the repository public, a workflow step is enough:',
+  'check.action.lede': 'The command-line version reads the local checkout and fails the build when a commitment marked in place is missing. A workflow step is enough:',
 
   'sum.answered': '<b>{a}</b> of {n} questions answered',
   'sum.evidenced': '<b>{e}</b> of {n} requirements evidenced in the repository',
@@ -2383,7 +2384,7 @@ const es = {
   'check.truncated': 'GitHub truncó la lista de archivos de este repositorio, así que algunos archivos pueden no haberse visto.',
   'check.plan.invalid': 'El plan tiene {n} problema(s), que se muestran abajo. La comprobación se hizo de todos modos.',
   'check.action.title': 'La misma comprobación en CI',
-  'check.action.lede': 'La versión de línea de comandos lee la copia local y hace fallar la compilación cuando falta un compromiso marcado en marcha. Con el repositorio público, basta un paso en un workflow:',
+  'check.action.lede': 'La versión de línea de comandos lee la copia local y hace fallar la compilación cuando falta un compromiso marcado en marcha. Basta un paso en un workflow:',
 
   'sum.answered': '<b>{a}</b> de {n} preguntas respondidas',
   'sum.evidenced': '<b>{e}</b> de {n} requisitos con evidencia en el repositorio',
