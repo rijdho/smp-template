@@ -9,7 +9,7 @@ abstract: >-
   and checks every commitment the plan marks as in place against the files of the
   repository it describes, locally, in the browser against GitHub, or as a GitHub
   Action. Code under MIT; schema and texts under CC BY 4.0. Available in
-  English and Spanish.
+  English and Spanish. The tool runs at https://rijdho.github.io/smp-template/.
 type: software
 authors:
   - family-names: "Hartley Belmar"
@@ -17,9 +17,10 @@ authors:
     alias: rijdho
     orcid: "https://orcid.org/0000-0001-5058-9309"
 repository-code: "https://github.com/rijdho/smp-template"
+url: "https://rijdho.github.io/smp-template/"
 license: MIT
 version: "0.1.0"
-date-released: "2026-10-20"
+date-released: "2026-10-30"
 keywords:
   - software management plan
   - machine-actionable
